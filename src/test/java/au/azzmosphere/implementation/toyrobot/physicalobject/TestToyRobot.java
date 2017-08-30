@@ -1,4 +1,4 @@
-package au.azzmosphere.toyrobot;
+package au.azzmosphere.implementation.toyrobot.physicalobject;
 
 import au.azzmosphere.implementation.toyrobot.phyiscalobject.ToyRobot;
 import au.azzmosphere.physicalobject.PhysicalObject;

@@ -5,6 +5,7 @@ import au.azzmosphere.responses.ResponseImpl;
 import au.azzmosphere.responses.ResponseStatus;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -25,5 +26,18 @@ public class TestResponse {
 
         response.setParameter("test", true);
         assertThat(response.getParameter("test"), is(true));
+    }
+
+    @Test
+    public void foo() throws Exception {
+        try {
+            //int a = Integer.parseInt("char");
+            Map<String, Object> h = new HashMap<>();
+            h.put("foo", "char");
+            int y = (int) h.get("foo");
+        }
+        catch (Exception e) {
+            System.out.println("exception is " + e.getClass());
+        }
     }
 }
