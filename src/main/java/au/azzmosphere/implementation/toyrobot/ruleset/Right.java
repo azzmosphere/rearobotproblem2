@@ -12,23 +12,21 @@ public class Right extends AbstractRule {
     @Override
     protected boolean performAction(Request request) throws CoordinateOutOfBoundsException, InvalidMovementException, OccupiedByAnotherObjectException, ObjectNotYetPlacedException {
         boolean result = true;
-
         Perspective perspective = request.getPhysicalObject().getPerspective();
 
         switch (perspective.getDirection()) {
             case NORTH:
-                perspective.setDirection(CardinalDirection.WEST);
-                break;
-            case EAST:
-                perspective.setDirection(CardinalDirection.NORTH);
-                break;
-            case SOUTH:
                 perspective.setDirection(CardinalDirection.EAST);
                 break;
-            case WEST:
+            case EAST:
                 perspective.setDirection(CardinalDirection.SOUTH);
+                break;
+            case SOUTH:
+                perspective.setDirection(CardinalDirection.WEST);
+                break;
+            case WEST:
+                perspective.setDirection(CardinalDirection.NORTH);
         }
-
         return result;
     }
 }

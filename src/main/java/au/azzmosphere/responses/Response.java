@@ -8,4 +8,5 @@ public interface Response {
     void setParameter(String key, Object value);
     Object getParameter(String key);
     void setParameterIfNull(String key, Object value);
+    Map getParameters();
 }

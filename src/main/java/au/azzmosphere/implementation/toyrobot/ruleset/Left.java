@@ -12,20 +12,19 @@ public final class Left extends AbstractRule {
     @Override
     protected boolean performAction(Request request) throws CoordinateOutOfBoundsException, InvalidMovementException, OccupiedByAnotherObjectException, ObjectNotYetPlacedException {
         boolean result = true;
-
         Perspective perspective = request.getPhysicalObject().getPerspective();
 
         switch (perspective.getDirection()) {
             case NORTH:
-               perspective.setDirection(CardinalDirection.EAST);
-               break;
-            case EAST:
-                perspective.setDirection(CardinalDirection.SOUTH);
-                break;
-            case SOUTH:
                 perspective.setDirection(CardinalDirection.WEST);
                 break;
             case WEST:
+                perspective.setDirection(CardinalDirection.SOUTH);
+                break;
+            case SOUTH:
+                perspective.setDirection(CardinalDirection.EAST);
+                break;
+            case EAST:
                 perspective.setDirection(CardinalDirection.NORTH);
         }
 

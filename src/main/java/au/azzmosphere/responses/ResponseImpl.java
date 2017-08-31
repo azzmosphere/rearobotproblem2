@@ -33,4 +33,9 @@ public class ResponseImpl implements Response {
             parameters.put(key, value);
         }
     }
+
+    @Override
+    public Map getParameters() {
+        return parameters;
+    }
 }

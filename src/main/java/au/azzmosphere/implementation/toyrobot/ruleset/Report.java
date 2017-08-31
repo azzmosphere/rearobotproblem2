@@ -12,9 +12,9 @@ public class Report extends AbstractRule {
         boolean result = true;
         int[] edges = world.getEdges(request.getPhysicalObject());
 
-        request.setParameter("xpos", edges[0]);
-        request.setParameter("ypos", edges[1]);
-        request.setParameter("direction", request.getPhysicalObject().getPerspective().getDirection().toString());
+        request.getResponse().setParameter("xpos", edges[0]);
+        request.getResponse().setParameter("ypos", edges[1]);
+        request.getResponse().setParameter("direction", request.getPhysicalObject().getPerspective().getDirection().toString());
 
         return result;
     }

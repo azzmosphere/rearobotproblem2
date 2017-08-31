@@ -37,7 +37,7 @@ public class TestLeft {
         perspective.setDirection(CardinalDirection.NORTH);
         left.run(leftRequest);
 
-        assertThat(perspective.getDirection(), is(CardinalDirection.EAST));
+        assertThat(perspective.getDirection(), is(CardinalDirection.WEST));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class TestLeft {
         perspective.setDirection(CardinalDirection.EAST);
         left.run(leftRequest);
 
-        assertThat(perspective.getDirection(), is(CardinalDirection.SOUTH));
+        assertThat(perspective.getDirection(), is(CardinalDirection.NORTH));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class TestLeft {
         perspective.setDirection(CardinalDirection.SOUTH);
         left.run(leftRequest);
 
-        assertThat(perspective.getDirection(), is(CardinalDirection.WEST));
+        assertThat(perspective.getDirection(), is(CardinalDirection.EAST));
     }
 
     @Test
@@ -61,6 +61,6 @@ public class TestLeft {
         perspective.setDirection(CardinalDirection.WEST);
         left.run(leftRequest);
 
-        assertThat(perspective.getDirection(), is(CardinalDirection.NORTH));
+        assertThat(perspective.getDirection(), is(CardinalDirection.SOUTH));
     }
 }

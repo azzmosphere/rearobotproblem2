@@ -27,6 +27,11 @@ function connect() {
     });
 }
 
+function showRoboGrid(message) {
+    $("#robogrid").show();
+    $("#robogrid").html("<tr><td>" + message + "</td></tr>");
+}
+
 function disconnect() {
     if (stompClient != null) {
         stompClient.disconnect();
@@ -44,6 +49,30 @@ function place() {
     }));
 }
 
+function move() {
+    stompClient.send("/app/robot", {}, JSON.stringify({
+        'type' : 'MOVE'
+    }));
+}
+
+function left() {
+    stompClient.send("/app/robot", {}, JSON.stringify({
+        'type' : 'LEFT'
+    }));
+}
+
+function right() {
+    stompClient.send("/app/robot", {}, JSON.stringify({
+        'type' : 'RIGHT'
+    }));
+}
+
+function report() {
+    stompClient.send("/app/robot", {}, JSON.stringify({
+        'type' : 'REPORT'
+    }));
+}
+
 
 /*
  * start the robot application, this calls the main methods above.
@@ -52,11 +81,12 @@ $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $( "#connect" ).click(function() { connect(); });
-    $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#place" ).click(function() {place();} );
+    $("#connect").click(function() { connect(); });
+    $("#disconnect").click(function() { disconnect(); });
+    $("#place").click(function() {place();} );
+    $("#move").click(function() {move();});
+    $("#left").click(function() {left();});
+    $("#right").click(function() {right();});
+    $("#report").click(function() {report();});
 });
 
-$(document).ready(function(){
-    $("#robodance").hide();
-});

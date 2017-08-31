@@ -24,7 +24,7 @@ public class RobotController {
 
     @MessageMapping("/robot")
     @SendTo("/topic/toyrobot")
-    public Response robotCommand(Map<String, Object> command) {
+    public Map robotCommand(Map<String, Object> command) {
 
         RequestImp request = getRequest(command);
         try {
@@ -33,7 +33,7 @@ public class RobotController {
         catch (Exception e) {
 
         }
-        return request.getResponse();
+        return request.getResponse().getParameters();
     }
 
     private RequestImp getRequest(Map<String, Object> command) {
