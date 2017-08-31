@@ -31,16 +31,13 @@ public class TestPlace {
     public void testPlaceNorth() throws Exception {
         Request placeRequest = new RequestImp();
         Perspective perspective = new PerspectiveImpl();
-        perspective.setDirection(CardinalDirection.NORTH);
 
-        Integer x = 0, y = 0;
-
-        placeRequest.setParameter("xpos", x);
-        placeRequest.setParameter("ypos", y);
-        placeRequest.setParameter("perspective", perspective);
+        placeRequest.setParameter("xpos", "0");
+        placeRequest.setParameter("ypos", "0");
+        placeRequest.setParameter("perspective", "NORTH");
 
         assertThat(place.run(placeRequest), is(true));
 
-        verify(world).placePhysicalObject(any(PhysicalObject.class), eq(x), eq(y));
+        verify(world).placePhysicalObject(any(PhysicalObject.class), eq(0), eq(0));
     }
 }

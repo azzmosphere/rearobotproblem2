@@ -6,10 +6,11 @@
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/app.js"></script>
 </head>
 <body>
 <div id="main-content" class="container">
-<p>Simple Test</p>
     <form class="form-inline">
         <div class="form-group">
             <label for="connect">Robot Problem connection:</label>
@@ -18,6 +19,34 @@
             </button>
         </div>
     </form>
+
+    <div id="robodance">
+        <form class="form-inline">
+            <div class="form-group">
+                <input id="xpos" type="number" />
+                <input id="ypos" type="number" />
+                <select id="direction">
+                    <option>NORTH</option>
+                    <option>EAST</option>
+                    <option>SOUTH</option>
+                    <option>WEST</option>
+                </select>
+                <button id="place" class="btn btn-default" type="submit">Place</button>
+
+            </div>
+        </form>
+
+        <form class="form-inline">
+            <div class="form-group">
+                <button id="move" class="btn btn-default" type="submit">Move</button>
+                <button id="left" class="btn btn-default" type="submit">Left</button>
+                <button id="right" class="btn btn-default" type="submit">Right</button>
+                <button id="report" class="btn btn-default" type="submit">Report</button>
+            </div>
+        </form>
+    </div>
 </div>
+
+
 </body>
 </html>

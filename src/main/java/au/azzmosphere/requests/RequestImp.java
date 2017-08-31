@@ -33,7 +33,7 @@ public class RequestImp implements Request {
     }
 
     @Override
-    public void setReponse(Response reponse) {
+    public void setReponse(Response response) {
         this.response = response;
     }
 

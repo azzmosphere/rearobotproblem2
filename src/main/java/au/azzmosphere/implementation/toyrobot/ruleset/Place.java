@@ -1,7 +1,9 @@
 package au.azzmosphere.implementation.toyrobot.ruleset;
 
 import au.azzmosphere.implementation.toyrobot.phyiscalobject.ToyRobot;
+import au.azzmosphere.physicalobject.perspective.CardinalDirection;
 import au.azzmosphere.physicalobject.perspective.Perspective;
+import au.azzmosphere.physicalobject.perspective.PerspectiveImpl;
 import au.azzmosphere.requests.Request;
 import au.azzmosphere.worlds.WorldRuleSet;
 import au.azzmosphere.worlds.OccupiedByAnotherObjectException;
@@ -18,10 +20,19 @@ public final class Place extends AbstractRule implements WorldRuleSet {
         int x, y;
         request.setPhysicalObject(new ToyRobot());
         boolean result = true;
-        x = (Integer) request.getParameter("xpos");
-        y = (Integer) request.getParameter("ypos");
-        request.getPhysicalObject().setPerspective((Perspective) request.getParameter("perspective"));
+        x = Integer.parseInt((String) request.getParameter("xpos"));
+        y = Integer.parseInt((String) request.getParameter("ypos"));
 
+        Perspective perspective = new PerspectiveImpl();
+
+        for (CardinalDirection c : CardinalDirection.values()) {
+            if (c.toString().equals(request.getParameter("perspective"))) {
+                perspective.setDirection(c);
+                break;
+            }
+        }
+
+        request.getPhysicalObject().setPerspective(perspective);
         world.placePhysicalObject(request.getPhysicalObject(), x, y);
 
         return result;
