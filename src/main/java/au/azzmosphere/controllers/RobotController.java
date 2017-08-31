@@ -18,7 +18,7 @@ public class RobotController {
     }
 
     @MessageMapping("/robot")
-    @SendTo("/topic/robot")
+    @SendTo("/topic/toyrobot")
     public Response robotCommand(RequestImp request) {
         try {
             actionService.run(request);

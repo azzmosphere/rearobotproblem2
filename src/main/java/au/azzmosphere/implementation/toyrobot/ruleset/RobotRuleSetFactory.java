@@ -20,6 +20,34 @@ public class RobotRuleSetFactory implements WorldRuleSetFactory {
 
     @Override
     public WorldRuleSet getRuleSet(Request request) throws RulesetCannotBeFoundException {
-        return null;
+        WorldRuleSet worldRuleSet = null;
+
+        try {
+            switch (request.getType()) {
+                case MOVE:
+                    worldRuleSet = new Move();
+                    break;
+                case LEFT:
+                    worldRuleSet = new Left();
+                    break;
+                case RIGHT:
+                    worldRuleSet = new Right();
+                    break;
+                case REPORT:
+                    worldRuleSet = new Report();
+                    break;
+                case PLACE:
+                    worldRuleSet = new Place();
+            }
+        }
+        catch (NullPointerException e) {
+            throw new RulesetCannotBeFoundException("request type was not defined");
+        }
+
+        if (worldRuleSet == null) {
+            throw new RulesetCannotBeFoundException("can not find rule set for request type " + request.getType());
+        }
+
+        return worldRuleSet;
     }
 }
