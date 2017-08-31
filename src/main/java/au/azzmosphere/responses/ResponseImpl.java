@@ -26,4 +26,11 @@ public class ResponseImpl implements Response {
     public Object getParameter(String key) {
         return parameters.get(key);
     }
+
+    @Override
+    public void setParameterIfNull(String key, Object value) {
+        if (!parameters.containsKey(key)) {
+            parameters.put(key, value);
+        }
+    }
 }

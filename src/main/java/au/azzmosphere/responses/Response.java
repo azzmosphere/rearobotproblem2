@@ -7,4 +7,5 @@ public interface Response {
     ResponseStatus getStatus();
     void setParameter(String key, Object value);
     Object getParameter(String key);
+    void setParameterIfNull(String key, Object value);
 }

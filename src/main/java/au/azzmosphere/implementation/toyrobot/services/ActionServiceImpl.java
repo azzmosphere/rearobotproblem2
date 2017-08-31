@@ -35,21 +35,27 @@ public final class ActionServiceImpl implements ActionService {
 
                 logger.debug("getting physical object from request.");
                 physicalObject = request.getPhysicalObject();
+
+                request.getResponse().setParameterIfNull("message", "success");
             }
             else {
                 request.getResponse().setStatus(ResponseStatus.FAIL);
+                request.getResponse().setParameterIfNull("message", "fail");
             }
         }
         catch (CoordinateOutOfBoundsException e) {
             logger.error("coordinates are out of bounds - ignoring request");
+            request.setParameter("message", "coordinates are out of bounds - ignoring request");
             request.getResponse().setStatus(ResponseStatus.EXCEPTION);
         }
         catch (InvalidMovementException e) {
             logger.error("Physical object can not perform this move - ignoring request");
+            request.setParameter("message", "Physical object can not perform this move - ignoring request");
             request.getResponse().setStatus(ResponseStatus.INVALID);
         }
         catch (RulesetCannotBeFoundException e) {
-            logger.fatal("unable to handle unknown ruleset");
+            logger.fatal("unable to handle unknown request - ignoring");
+            request.setParameter("message", "unable to handle unknown request - ignoring");
             throw e;
         }
         catch(Exception e) {

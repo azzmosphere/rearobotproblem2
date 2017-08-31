@@ -8,7 +8,7 @@ import au.azzmosphere.worlds.InvalidMovementException;
 import au.azzmosphere.worlds.ObjectNotYetPlacedException;
 import au.azzmosphere.worlds.OccupiedByAnotherObjectException;
 
-public final class Left extends AbstractRule {
+public class Right extends AbstractRule {
     @Override
     protected boolean performAction(Request request) throws CoordinateOutOfBoundsException, InvalidMovementException, OccupiedByAnotherObjectException, ObjectNotYetPlacedException {
         boolean result = true;
@@ -17,16 +17,16 @@ public final class Left extends AbstractRule {
 
         switch (perspective.getDirection()) {
             case NORTH:
-               perspective.setDirection(CardinalDirection.EAST);
-               break;
-            case EAST:
-                perspective.setDirection(CardinalDirection.SOUTH);
-                break;
-            case SOUTH:
                 perspective.setDirection(CardinalDirection.WEST);
                 break;
-            case WEST:
+            case EAST:
                 perspective.setDirection(CardinalDirection.NORTH);
+                break;
+            case SOUTH:
+                perspective.setDirection(CardinalDirection.EAST);
+                break;
+            case WEST:
+                perspective.setDirection(CardinalDirection.SOUTH);
         }
 
         return result;

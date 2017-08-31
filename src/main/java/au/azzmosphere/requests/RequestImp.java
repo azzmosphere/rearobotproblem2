@@ -6,10 +6,11 @@ import au.azzmosphere.responses.Response;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractRequest implements Request {
+public class RequestImp implements Request {
     private PhysicalObject physicalObject;
     private Map<String, Object> parameters = new HashMap<>();
     private Response response;
+    private RequestType requestType;
 
     @Override
     public void setPhysicalObject(PhysicalObject physicalObject) {
@@ -39,5 +40,15 @@ public abstract class AbstractRequest implements Request {
     @Override
     public Response getResponse() {
         return response;
+    }
+
+    @Override
+    public void setType(RequestType requestType) {
+        this.requestType = requestType;
+    }
+
+    @Override
+    public RequestType getType() {
+        return requestType;
     }
 }

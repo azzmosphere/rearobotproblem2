@@ -14,4 +14,7 @@ public interface Request {
 
     void setReponse(Response reponse);
     Response getResponse();
+
+    void setType(RequestType requestType);
+    RequestType getType();
 }
