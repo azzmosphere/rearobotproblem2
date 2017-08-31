@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
 public final class ActionServiceImpl implements ActionService {
     private WorldRuleSetFactory worldRuleSetFactory;
     private static final Logger logger = Logger.getLogger(ActionService.class);

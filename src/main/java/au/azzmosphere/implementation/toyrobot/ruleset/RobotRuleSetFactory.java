@@ -6,9 +6,7 @@ import au.azzmosphere.worlds.World;
 import au.azzmosphere.worlds.WorldRuleSet;
 import au.azzmosphere.worlds.WorldRuleSetFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
 public class RobotRuleSetFactory implements WorldRuleSetFactory {
     private World world;
 
