@@ -5,9 +5,11 @@ function setConnected(connected) {
     $("#disconnect").prop("disabled", !connected);
     if (connected) {
         $("#robodance").show();
+        $("#board").show();
     }
     else {
         $("#robodance").hide();
+        $("#board").hide();
     }
     $("#robogrid").html("");
 }
@@ -22,14 +24,19 @@ function connect() {
             setConnected(true);
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/toyrobot', function (roboDance) {
-                showRoboGrid(JSON.parse(roboDance.body).content);
+                showRoboGrid(roboDance.body);
             });
     });
 }
 
 function showRoboGrid(message) {
+
     $("#robogrid").show();
     $("#robogrid").html("<tr><td>" + message + "</td></tr>");
+
+    if (JSON.parse(message).status === "SUCCESS" && JSON.parse(message).message === "REPORT") {
+        alert("do something with this");
+    }
 }
 
 function disconnect() {
@@ -47,24 +54,31 @@ function place() {
         'perspective' : $("#direction").val(),
         'type' : 'PLACE'
     }));
+
+    stompClient.send("/app/robot", {}, JSON.stringify({
+         'type' : "REPORT"
+    }));
+}
+
+function danceRobot(robotType) {
+    stompClient.send("/app/robot", {}, JSON.stringify({
+        'type' : robotType
+    }));
+    stompClient.send("/app/robot", {}, JSON.stringify({
+        'type' : "REPORT"
+    }));
 }
 
 function move() {
-    stompClient.send("/app/robot", {}, JSON.stringify({
-        'type' : 'MOVE'
-    }));
+    danceRobot("MOVE");
 }
 
 function left() {
-    stompClient.send("/app/robot", {}, JSON.stringify({
-        'type' : 'LEFT'
-    }));
+    danceRobot("LEFT");
 }
 
 function right() {
-    stompClient.send("/app/robot", {}, JSON.stringify({
-        'type' : 'RIGHT'
-    }));
+    danceRobot("RIGHT");
 }
 
 function report() {
@@ -81,6 +95,7 @@ $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
+
     $("#connect").click(function() { connect(); });
     $("#disconnect").click(function() { disconnect(); });
     $("#place").click(function() {place();} );
@@ -89,4 +104,5 @@ $(function () {
     $("#right").click(function() {right();});
     $("#report").click(function() {report();});
 });
+
 

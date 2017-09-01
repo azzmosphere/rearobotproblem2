@@ -47,12 +47,12 @@ public final class ActionServiceImpl implements ActionService {
         }
         catch (CoordinateOutOfBoundsException e) {
             logger.error("coordinates are out of bounds - ignoring request");
-            request.setParameter("message", "coordinates are out of bounds - ignoring request");
+            request.getResponse().setParameter("message", "coordinates are out of bounds - ignoring request");
             request.getResponse().setStatus(ResponseStatus.EXCEPTION);
         }
         catch (InvalidMovementException e) {
             logger.error("Physical object can not perform this move - ignoring request");
-            request.setParameter("message", "Physical object can not perform this move - ignoring request");
+            request.getResponse().setParameter("message", "Physical object can not perform this move - ignoring request");
             request.getResponse().setStatus(ResponseStatus.INVALID);
         }
         catch (RulesetCannotBeFoundException e) {

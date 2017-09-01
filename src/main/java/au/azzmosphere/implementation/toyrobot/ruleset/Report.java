@@ -15,6 +15,7 @@ public class Report extends AbstractRule {
         request.getResponse().setParameter("xpos", edges[0]);
         request.getResponse().setParameter("ypos", edges[1]);
         request.getResponse().setParameter("direction", request.getPhysicalObject().getPerspective().getDirection().toString());
+        request.getResponse().setParameter("message", "REPORT");
 
         return result;
     }

@@ -1,0 +1,28 @@
+// Quick and dirty implementation for a chess board
+// Will Sass it up later on.
+
+#board {
+	width: 500px;
+	height: 500px;
+	border: 3px solid grey;
+}
+
+div.row div {
+	width: 100px;
+	height: 100px;
+}
+
+div.row div.bl { background-color: black; }
+div.row div.wh { background-color: white; }
+
+div.row div {
+	float: left;
+}
+
+div.row:after {
+	content: ".";
+	height: 0;
+	visibility: hidden;
+	display: block;
+	clear: both;
+}

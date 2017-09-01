@@ -33,7 +33,10 @@ public class RobotController {
         catch (Exception e) {
 
         }
-        return request.getResponse().getParameters();
+        Map response = request.getResponse().getParameters();
+        response.put("status", request.getResponse().getStatus());
+
+        return response;
     }
 
     private RequestImp getRequest(Map<String, Object> command) {
