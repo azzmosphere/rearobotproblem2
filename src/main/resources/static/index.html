@@ -7,6 +7,7 @@
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/js/jQueryRotate.js"></script>
     <script src="/app.js"></script>
     <link href="/css/robot.css" rel="stylesheet" />
 </head>
@@ -50,43 +51,43 @@
     <div id="robogrid" hidden></div>
     <div id="board" hidden>
         <div class="row">
-            <div class="bl"></div>
-            <div class="wh"></div>
-            <div class="bl"></div>
-            <div class="wh"></div>
-            <div class="bl"></div>
+            <div class="bl" id="4_0"></div>
+            <div class="wh" id="4_1"></div>
+            <div class="bl" id="4_2"></div>
+            <div class="wh" id="4_3"></div>
+            <div class="bl" id="4_4"></div>
         </div>
 
         <div class="row">
-            <div class="wh"></div>
-            <div class="bl"></div>
-            <div class="wh"></div>
-            <div class="bl"></div>
-            <div class="wh"></div>
+            <div class="wh" id="3_0"></div>
+            <div class="bl" id="3_1"></div>
+            <div class="wh" id="3_2"></div>
+            <div class="bl" id="3_3"></div>
+            <div class="wh" id="3_4"></div>
         </div>
 
         <div class="row">
-            <div class="bl" id="2_4"></div>
-            <div class="wh" id="2_3"></div>
-            <div class="bl" id="2_2"></div>
-            <div class="wh" id="2_1"></div>
             <div class="bl" id="2_0"></div>
+            <div class="wh" id="2_1"></div>
+            <div class="bl" id="2_2"></div>
+            <div class="wh" id="2_3"></div>
+            <div class="bl" id="2_4"></div>
         </div>
 
         <div class="row">
-            <div class="wh" id="1_4"></div>
-            <div class="bl" id="1_3"></div>
-            <div class="wh" id="1_2"></div>
-            <div class="bl" id="1_1"></div>
             <div class="wh" id="1_0"></div>
+            <div class="bl" id="1_1"></div>
+            <div class="wh" id="1_2"></div>
+            <div class="bl" id="1_3"></div>
+            <div class="wh" id="1_4"></div>
         </div>
 
         <div class="row">
-            <div class="bl" id="0_4"></div>
-            <div class="wh" id="0_3"></div>
-            <div class="bl" id="0_2"></div>
-            <div class="wh" id="0_1"></div>
             <div class="bl" id="0_0"></div>
+            <div class="wh" id="0_1"></div>
+            <div class="bl" id="0_2"></div>
+            <div class="wh" id="0_3"></div>
+            <div class="bl" id="0_4"></div>
         </div>
     </div>
 </div>

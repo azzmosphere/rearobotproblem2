@@ -1,4 +1,5 @@
 var stompClient = null;
+var currentGP = null;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -34,9 +35,33 @@ function showRoboGrid(message) {
     $("#robogrid").show();
     $("#robogrid").html("<tr><td>" + message + "</td></tr>");
 
-    if (JSON.parse(message).status === "SUCCESS" && JSON.parse(message).message === "REPORT") {
-        alert("do something with this");
+    if (JSON.parse(message).status === "SUCCESS") {
+        if (JSON.parse(message).message === "REPORT") {
+            var gid = "#" + JSON.parse(message).xpos + "_" + JSON.parse(message).ypos;
+
+            if (currentGP != null) {
+                $(currentGP).html("");
+            }
+            $(gid).prepend('<img id="robot" src="/images/robot.png" />');
+            currentGP = gid;
+            rotateImage("#robot", JSON.parse(message).direction);
+        }
     }
+}
+
+function rotateImage(tag, direction) {
+    var angle = 0;
+    if (direction === "EAST") {
+        angle = 90;
+    }
+    else if (direction === "SOUTH") {
+        angle = 180;
+    }
+    else if (direction === "WEST") {
+        angle = 270;
+    }
+
+    $(tag).rotate(angle);
 }
 
 function disconnect() {

@@ -28,6 +28,8 @@ public final class Left extends AbstractRule {
                 perspective.setDirection(CardinalDirection.NORTH);
         }
 
+        request.getResponse().setParameter("message", "LEFT");
+
         return result;
     }
 }

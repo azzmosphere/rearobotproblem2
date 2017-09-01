@@ -27,6 +27,9 @@ public class Right extends AbstractRule {
             case WEST:
                 perspective.setDirection(CardinalDirection.NORTH);
         }
+
+        request.getResponse().setParameter("message", "RIGHT");
+
         return result;
     }
 }
