@@ -1,6 +1,6 @@
 package au.azzmosphere.physicalobject.perspective;
 
-public class PerspectiveImpl implements Perspective{
+public class PerspectiveImpl implements Perspective {
     private CardinalDirection cardinalDirection;
 
     @Override

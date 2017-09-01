@@ -66,7 +66,7 @@ public class WorldImpl implements World {
     public PhysicalObject getPhysicalObject(int x, int y) {
         Iterator it = objectMap.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
+            Map.Entry pair = (Map.Entry) it.next();
             int[] coordinates = (int[]) pair.getValue();
 
             if (coordinates[0] == x && coordinates[1] == y) {

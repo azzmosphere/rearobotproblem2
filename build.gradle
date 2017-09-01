@@ -13,6 +13,7 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'checkstyle'
 
 sourceCompatibility = 1.8
 

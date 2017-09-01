@@ -6,10 +6,14 @@ import au.azzmosphere.requests.Request;
 import au.azzmosphere.responses.ResponseImpl;
 import au.azzmosphere.responses.ResponseStatus;
 import au.azzmosphere.services.ActionService;
-import au.azzmosphere.worlds.*;
+import au.azzmosphere.worlds.RulesetCannotBeFoundException;
+import au.azzmosphere.worlds.WorldRuleSet;
+import au.azzmosphere.worlds.WorldRuleSetFactory;
+import au.azzmosphere.worlds.World;
+import au.azzmosphere.worlds.CoordinateOutOfBoundsException;
+import au.azzmosphere.worlds.InvalidMovementException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 public final class ActionServiceImpl implements ActionService {
     private WorldRuleSetFactory worldRuleSetFactory;
@@ -26,7 +30,7 @@ public final class ActionServiceImpl implements ActionService {
     public final void run(Request request) throws RulesetCannotBeFoundException {
         try {
             logger.debug("attempting to execute request " + request.toString());
-            request.setReponse(new ResponseImpl());
+            request.setResponse(new ResponseImpl());
             WorldRuleSet worldRuleSet = worldRuleSetFactory.getRuleSet(request);
             request.setPhysicalObject(physicalObject);
             worldRuleSet.setWorld(world);
