@@ -8,6 +8,11 @@ import au.azzmosphere.worlds.WorldImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Class configuration. use this to change grid sizes etc, however it
+ * will not affect HTML.  This will need to be modified separately.
+ */
+
 @Configuration
 public class RobotAppConfig {
 

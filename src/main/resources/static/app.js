@@ -1,6 +1,11 @@
 var stompClient = null;
+
+// Current Grid Position of Robot
 var currentGP = null;
 
+/**
+ * on a successful connection this will display true.
+ */
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
     $("#disconnect").prop("disabled", !connected);
@@ -30,6 +35,9 @@ function connect() {
     });
 }
 
+/**
+ * reposition and render robot.
+ */
 function showRoboGrid(message) {
 
     $("#robogrid").show();
@@ -49,6 +57,9 @@ function showRoboGrid(message) {
     }
 }
 
+/**
+ *  rotate a image.
+ */
 function rotateImage(tag, direction) {
     var angle = 0;
     if (direction === "EAST") {

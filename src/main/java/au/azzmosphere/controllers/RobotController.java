@@ -1,17 +1,19 @@
 package au.azzmosphere.controllers;
 
-import au.azzmosphere.physicalobject.perspective.CardinalDirection;
 import au.azzmosphere.requests.RequestImp;
 import au.azzmosphere.requests.RequestType;
-import au.azzmosphere.responses.Response;
 import au.azzmosphere.services.ActionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-
 import java.util.Iterator;
 import java.util.Map;
+
+/**
+ * controller for robot.  listens on the /robot queue and responds
+ * on the /top/toyrobot queue.
+ */
 
 @Controller
 public class RobotController {
