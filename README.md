@@ -1,4 +1,4 @@
-#INTRODUCTION
+# INTRODUCTION
 
 This is the second attempt at the robot challenge, I am writing this version with two objectives in mind:
 
@@ -6,7 +6,7 @@ This is the second attempt at the robot challenge, I am writing this version wit
 2. To create a platform that can use generic chess language cooridiantes.
 
 
-#CONSIDERATIONS
+# CONSIDERATIONS
 
 The feedback that I recieved from my original code review was:
 
@@ -31,7 +31,7 @@ There are two things that need to be done here.
 
 * Knowledge of Language - Demonstrates technologies from Java ecosystem like JAXB and Checkstyle.
 
-#DESIGN
+# DESIGN
 
 ## World Class
 
