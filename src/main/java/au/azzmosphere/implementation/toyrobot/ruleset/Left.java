@@ -8,6 +8,10 @@ import au.azzmosphere.worlds.InvalidMovementException;
 import au.azzmosphere.worlds.ObjectNotYetPlacedException;
 import au.azzmosphere.worlds.OccupiedByAnotherObjectException;
 
+/**
+ * rotates the physical object 90 degrees counter clockwise.
+ */
+
 public final class Left extends AbstractRule {
     @Override
     protected boolean performAction(Request request) throws CoordinateOutOfBoundsException, InvalidMovementException, OccupiedByAnotherObjectException, ObjectNotYetPlacedException {
@@ -26,9 +30,10 @@ public final class Left extends AbstractRule {
                 break;
             case EAST:
                 perspective.setDirection(CardinalDirection.NORTH);
+                break;
+            default:
+                throw new InvalidMovementException("unknown direction");
         }
-
-        request.getResponse().setParameter("message", "LEFT");
 
         return result;
     }

@@ -36,6 +36,9 @@ public class RobotRuleSetFactory implements WorldRuleSetFactory {
                     break;
                 case PLACE:
                     worldRuleSet = new Place();
+                    break;
+                default:
+                    throw new RulesetCannotBeFoundException("request type does not match any known rule set");
             }
         }
         catch (NullPointerException e) {

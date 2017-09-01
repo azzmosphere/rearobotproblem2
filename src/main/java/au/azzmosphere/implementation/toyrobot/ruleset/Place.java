@@ -14,7 +14,7 @@ public final class Place extends AbstractRule implements WorldRuleSet {
     private static final Logger logger = Logger.getLogger(WorldRuleSet.class);
 
     @Override
-    protected final boolean performAction(Request request) throws CoordinateOutOfBoundsException, OccupiedByAnotherObjectException {
+    protected boolean performAction(Request request) throws CoordinateOutOfBoundsException, OccupiedByAnotherObjectException {
 
         logger.debug("performing place action");
         int x, y;

@@ -55,7 +55,7 @@ public class RobotController {
 
         Iterator it = command.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
+            Map.Entry pair = (Map.Entry) it.next();
             request.setParameter((String) pair.getKey(), pair.getValue());
         }
         return request;

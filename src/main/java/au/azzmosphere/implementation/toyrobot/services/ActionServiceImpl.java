@@ -27,7 +27,7 @@ public final class ActionServiceImpl implements ActionService {
     }
 
     @Override
-    public final void run(Request request) throws RulesetCannotBeFoundException {
+    public void run(Request request) throws RulesetCannotBeFoundException {
         try {
             logger.debug("attempting to execute request " + request.toString());
             request.setResponse(new ResponseImpl());
@@ -64,14 +64,14 @@ public final class ActionServiceImpl implements ActionService {
             request.setParameter("message", "unable to handle unknown request - ignoring");
             throw e;
         }
-        catch(Exception e) {
+        catch (Exception e) {
             throw new RulesetCannotBeFoundException("could not find a rule set for request " + request.toString());
         }
     }
 
     @Autowired
     @Override
-    public final void setWorldRulesetFactory(WorldRuleSetFactory worldRulesetFactory) {
+    public void setWorldRulesetFactory(WorldRuleSetFactory worldRulesetFactory) {
         this.worldRuleSetFactory = worldRulesetFactory;
     }
 }

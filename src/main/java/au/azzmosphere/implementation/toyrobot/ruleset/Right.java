@@ -26,6 +26,9 @@ public class Right extends AbstractRule {
                 break;
             case WEST:
                 perspective.setDirection(CardinalDirection.NORTH);
+                break;
+            default:
+                throw new InvalidMovementException("unknown perspective");
         }
 
         request.getResponse().setParameter("message", "RIGHT");

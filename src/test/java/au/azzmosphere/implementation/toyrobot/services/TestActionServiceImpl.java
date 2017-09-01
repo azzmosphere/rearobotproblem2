@@ -4,7 +4,10 @@ import au.azzmosphere.requests.Request;
 import au.azzmosphere.responses.Response;
 import au.azzmosphere.responses.ResponseStatus;
 import au.azzmosphere.services.ActionService;
-import au.azzmosphere.worlds.*;
+import au.azzmosphere.worlds.WorldRuleSetFactory;
+import au.azzmosphere.worlds.WorldRuleSet;
+import au.azzmosphere.worlds.CoordinateOutOfBoundsException;
+import au.azzmosphere.worlds.InvalidMovementException;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -8,7 +8,11 @@ import au.azzmosphere.worlds.OccupiedByAnotherObjectException;
 import au.azzmosphere.worlds.CoordinateOutOfBoundsException;
 import au.azzmosphere.worlds.InvalidMovementException;
 
-public class Move extends AbstractRule implements WorldRuleSet {
+/**
+ * moves physical object one unit.
+ */
+
+public final class Move extends AbstractRule implements WorldRuleSet {
 
     @Override
     protected boolean performAction(Request request) throws CoordinateOutOfBoundsException, InvalidMovementException, OccupiedByAnotherObjectException, ObjectNotYetPlacedException {
@@ -29,6 +33,9 @@ public class Move extends AbstractRule implements WorldRuleSet {
                 break;
             case SOUTH:
                 y--;
+                break;
+            default:
+                throw new InvalidMovementException("unable to determine which way to move physical object");
         }
         world.movePhysicalObject(physicalObject, x, y);
 

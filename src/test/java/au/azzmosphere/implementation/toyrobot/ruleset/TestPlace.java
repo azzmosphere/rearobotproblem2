@@ -1,9 +1,6 @@
 package au.azzmosphere.implementation.toyrobot.ruleset;
 
 import au.azzmosphere.physicalobject.PhysicalObject;
-import au.azzmosphere.physicalobject.perspective.CardinalDirection;
-import au.azzmosphere.physicalobject.perspective.Perspective;
-import au.azzmosphere.physicalobject.perspective.PerspectiveImpl;
 import au.azzmosphere.requests.Request;
 import au.azzmosphere.requests.RequestImp;
 import au.azzmosphere.worlds.World;
@@ -30,7 +27,6 @@ public class TestPlace {
     @Test
     public void testPlaceNorth() throws Exception {
         Request placeRequest = new RequestImp();
-        Perspective perspective = new PerspectiveImpl();
 
         placeRequest.setParameter("xpos", "0");
         placeRequest.setParameter("ypos", "0");
