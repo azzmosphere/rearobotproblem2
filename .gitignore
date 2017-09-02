@@ -1,0 +1,8 @@
+
+.gradle/*
+.idea/*
+RobotChallenge2.ipr
+RobotChallenge2.iws
+RobotChallenge2.iml
+build/
+out/
