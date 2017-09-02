@@ -14,7 +14,7 @@ public class TestWorldImpl {
 
     @Before
     public void setup() {
-        world =new WorldImpl(5, 5);
+        world = new WorldImpl(5, 5);
     }
 
     @Test
@@ -76,17 +76,4 @@ public class TestWorldImpl {
         assertThat(edges, is(new int[] {1, 3}));
     }
 
-    @Test
-    public void testGrid() throws Exception {
-        PhysicalObject physicalObject = mock(PhysicalObject.class);
-        world.placePhysicalObject(physicalObject, 1, 2);
-        world.removePhysicalObject(physicalObject);
-
-        world.placePhysicalObject(physicalObject, 1, 2);
-        world.movePhysicalObject(physicalObject, 1, 3);
-
-        boolean[][] vertices = world.getVertices();
-
-        System.out.println(vertices.toString());
-    }
 }
