@@ -81,15 +81,6 @@ function disconnect() {
 
 function place() {
 
-    // Remove the old object before placing a new one.
-    if (currentGP != null) {
-        setTimeout(function() {
-            stompClient.send("/app/robot", {}, JSON.stringify({
-                'type' : 'REMOVE'
-            }));
-        }, 30);
-    }
-
     stompClient.send("/app/robot", {}, JSON.stringify({
         'xpos': $("#xpos").val(),
         'ypos': $("#ypos").val(),
