@@ -41,7 +41,7 @@ function connect() {
 function showRoboGrid(message) {
 
     $("#robogrid").show();
-    $("#robogrid").html("<tr><td>" + message + "</td></tr>");
+    $("#robogrid").append("<tr><td>" + message + "</td></tr>");
 
     if (JSON.parse(message).status === "SUCCESS") {
         if (JSON.parse(message).message === "REPORT") {
@@ -83,23 +83,28 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function place() {
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function place() {
     stompClient.send("/app/robot", {}, JSON.stringify({
         'xpos': $("#xpos").val(),
         'ypos': $("#ypos").val(),
         'perspective' : $("#direction").val(),
         'type' : 'PLACE'
     }));
-
+    await sleep(30);
     stompClient.send("/app/robot", {}, JSON.stringify({
          'type' : "REPORT"
     }));
 }
 
-function danceRobot(robotType) {
+async function danceRobot(robotType) {
     stompClient.send("/app/robot", {}, JSON.stringify({
         'type' : robotType
     }));
+    await sleep(30);
     stompClient.send("/app/robot", {}, JSON.stringify({
         'type' : "REPORT"
     }));

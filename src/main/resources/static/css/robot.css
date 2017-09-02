@@ -27,7 +27,21 @@ div.row:after {
 	clear: both;
 }
 
+.divpadding {
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-botto: 5px;
+    padding-left: 5px;
+}
+
 img {
     max-width: 100%;
     max-height: 100%;
+}
+
+#robogrid {
+    overflow-y: scroll;
+    content: ".";
+    width: 500px;
+    height: 200px;
 }

@@ -21,6 +21,11 @@ repositories {
     mavenCentral()
 }
 
+//test {
+//    // enable TestNG support (default is JUnit)
+//    useTestNG()
+//}
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.webjars:webjars-locator")
