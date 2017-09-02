@@ -7,6 +7,10 @@ import au.azzmosphere.worlds.WorldRuleSet;
 import au.azzmosphere.worlds.WorldRuleSetFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Based upon the request type return the appropriate BR class to handle it.
+ */
+
 public class RobotRuleSetFactory implements WorldRuleSetFactory {
     private World world;
 

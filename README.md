@@ -3,8 +3,54 @@
 This is the second attempt at the robot challenge, I am writing this version with two objectives in mind:
 
 1. To fix up the problems noticed in the REA code review for my first attempt; and
-2. To create a platform that can use generic chess language cooridiantes.
+2. To create a platform that can use generic chess language coordinates.
 
+# RUNNING
+
+To run the server, from a UNIX environment (including Mac and LINUX) run the JAR which is:
+
+    ./robotchallenge2.jar
+    
+This will trigger the Spring server, and bind to the server at port 8080.
+
+Note: that your environment must have a instance of the Java Runtime environment (JRE) installed.
+
+To connect to the server in any browser that supports Javascript and Web-sockets (that is nearly all of them). Enter
+the IP address of the server followed by ':8080'.  If the server is the local machine this can be done with the 
+special canonical name: localhost, like such
+
+    http://localhost:8080
+    
+To establish a connection click the "Connect" button.  This will connect to the server using web-sockets and render the
+robot controls and grid.  
+
+You should also click the "Report" button if it is a running instance of the robot challenge.  This will render
+the robot in its current position.
+
+From there you can control the robot using the robot control panel. Which is done like so:
+
+"Move": will move the robot one unit right from its current perspective. If its current perspective is
+"North" then this will move the robot rightwards accross the screen.
+
+"Left": will rotate the robot 90 degrees counter clockwise, and change the perspective of the robot to the compass
+cardinal point of where the robot's head is currently pointing.
+
+"Right": will rotate the robot 90 degrees clockwise, and change the perspective of the robot to the compass cardinal 
+point of where the robot's head is currently pointing.
+
+"Place": Will place the robot in accordance to the form variables on the right hand side of the button. The origin
+0, 0, NORTH can be considered the SOUTH WEST most corner of the grid with the robot head facing a northerly direction.
+
+"Report": will force a re-render of the robot, note that this is done implicitly by all commands.
+
+Before the robot can be moved, there must be at least one "Place" command.  A subsequent "Place" command will remove 
+the robot from the grid and create a new instance of it in the origin selected in the form.
+
+# COMPILING
+
+Compiling the source code can be done by using the following command from within the robot challenge source tree.
+
+     gradle build
 
 # CONSIDERATIONS
 

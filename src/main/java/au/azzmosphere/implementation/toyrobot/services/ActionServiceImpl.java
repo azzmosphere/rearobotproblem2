@@ -6,6 +6,7 @@ import au.azzmosphere.requests.Request;
 import au.azzmosphere.responses.ResponseImpl;
 import au.azzmosphere.responses.ResponseStatus;
 import au.azzmosphere.services.ActionService;
+import au.azzmosphere.services.UncheckedException;
 import au.azzmosphere.worlds.RulesetCannotBeFoundException;
 import au.azzmosphere.worlds.WorldRuleSet;
 import au.azzmosphere.worlds.WorldRuleSetFactory;
@@ -27,7 +28,7 @@ public final class ActionServiceImpl implements ActionService {
     }
 
     @Override
-    public void run(Request request) throws RulesetCannotBeFoundException {
+    public void run(Request request) throws RulesetCannotBeFoundException, UncheckedException {
         try {
             logger.debug("attempting to execute request " + request.toString());
             request.setResponse(new ResponseImpl());
@@ -65,7 +66,7 @@ public final class ActionServiceImpl implements ActionService {
             throw e;
         }
         catch (Exception e) {
-            throw new RulesetCannotBeFoundException("could not find a rule set for request " + request.toString());
+            throw new UncheckedException("could not find a rule set for request " + request.toString());
         }
     }
 
