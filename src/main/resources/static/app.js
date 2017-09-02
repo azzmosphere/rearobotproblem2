@@ -17,7 +17,6 @@ function setConnected(connected) {
         $("#robodance").hide();
         $("#board").hide();
     }
-    $("#robogrid").html("");
 }
 
 /**
@@ -39,9 +38,6 @@ function connect() {
  * reposition and render robot.
  */
 function showRoboGrid(message) {
-
-    $("#robogrid").show();
-    $("#robogrid").append("<tr><td>" + message + "</td></tr>");
 
     if (JSON.parse(message).status === "SUCCESS") {
         if (JSON.parse(message).message === "REPORT") {
@@ -83,31 +79,42 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+function place() {
 
-async function place() {
+    // Remove the old object before placing a new one.
+    if (currentGP != null) {
+        setTimeout(function() {
+            stompClient.send("/app/robot", {}, JSON.stringify({
+                'type' : 'REMOVE'
+            }));
+        }, 30);
+    }
+
     stompClient.send("/app/robot", {}, JSON.stringify({
         'xpos': $("#xpos").val(),
         'ypos': $("#ypos").val(),
         'perspective' : $("#direction").val(),
         'type' : 'PLACE'
     }));
-    await sleep(30);
-    stompClient.send("/app/robot", {}, JSON.stringify({
+
+    // Ideally we want the methods to be asyncronise
+    // but since the async method is not supported
+    // by all many browsers.  The time out
+    // method is used delaying execution by 30ms
+    // this should keep things relatively in
+    // sync
+    setTimeout(function() {stompClient.send("/app/robot", {}, JSON.stringify({
          'type' : "REPORT"
-    }));
+    }));}, 30);
 }
 
-async function danceRobot(robotType) {
+function danceRobot(robotType) {
     stompClient.send("/app/robot", {}, JSON.stringify({
         'type' : robotType
     }));
-    await sleep(30);
-    stompClient.send("/app/robot", {}, JSON.stringify({
+    setTimeout(function() {stompClient.send("/app/robot", {}, JSON.stringify({
         'type' : "REPORT"
-    }));
+    }));}, 30);
 }
 
 function move() {
@@ -128,6 +135,12 @@ function report() {
     }));
 }
 
+function remove() {
+    stompClient.send("/app/robot", {}, JSON.stringify({
+        'type' : 'REMOVE'
+    }));
+}
+
 
 /*
  * start the robot application, this calls the main methods above.
@@ -144,6 +157,7 @@ $(function () {
     $("#left").click(function() {left();});
     $("#right").click(function() {right();});
     $("#report").click(function() {report();});
+    $("#remove").click(function() {remove();});
 });
 
 

@@ -5,5 +5,6 @@ public enum RequestType {
     MOVE,
     LEFT,
     RIGHT,
-    REPORT
+    REPORT,
+    REMOVE
 }

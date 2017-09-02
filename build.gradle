@@ -21,10 +21,10 @@ repositories {
     mavenCentral()
 }
 
-//test {
-//    // enable TestNG support (default is JUnit)
-//    useTestNG()
-//}
+bootRepackage {
+    mainClass = 'au.azzmosphere.ToyRobot'
+    executable = true
+}
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-websocket")
