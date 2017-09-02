@@ -41,10 +41,10 @@ function showRoboGrid(message) {
 
     if (JSON.parse(message).status === "SUCCESS") {
         if (JSON.parse(message).message === "REPORT") {
-            var gid = "#" + JSON.parse(message).xpos + "_" + JSON.parse(message).ypos;
+            var gid = JSON.parse(message).xpos + "_" + JSON.parse(message).ypos;
 
             if (currentGP != null) {
-                $(currentGP).html("");
+                $('#' + currentGP).html("");
             }
             $(gid).prepend('<img id="robot" src="/images/robot.png" />');
             currentGP = gid;
@@ -82,13 +82,16 @@ function disconnect() {
 function place() {
 
     // Remove the old object before placing a new one.
-    if (currentGP != null) {
-        setTimeout(function() {
-            stompClient.send("/app/robot", {}, JSON.stringify({
-                'type' : 'REMOVE'
-            }));
-        }, 30);
-    }
+ //   if (currentGP != null) {
+ //       var coordinates = currentGP.split("_");
+ //       setTimeout(function() {
+ //           stompClient.send("/app/robot", {}, JSON.stringify({
+ //               'type' : 'REMOVE',
+ //               'xpos' : coordinates[0],
+ //               'ypos' : coordinates[1]
+ //           }));
+ //       }, 30);
+ //   }
 
     stompClient.send("/app/robot", {}, JSON.stringify({
         'xpos': $("#xpos").val(),

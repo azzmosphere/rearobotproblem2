@@ -10,7 +10,7 @@ public class WorldImpl implements World {
 
     private int width, height;
     private boolean[][] vertices;
-    private Map<PhysicalObject, int[]> objectMap = new HashMap<>();
+    private Map<Integer, Map<PhysicalObject, int[]>> objectMap = new HashMap<>();
 
     public WorldImpl(int width, int height) {
         this.width = width;
@@ -33,32 +33,33 @@ public class WorldImpl implements World {
     public void placePhysicalObject(PhysicalObject physicalObject, int x, int y) throws CoordinateOutOfBoundsException, OccupiedByAnotherObjectException {
         if (canPlaceObject(x, y)) {
             vertices[x][y] = true;
-            objectMap.put(physicalObject, new int[]{x, y});
+            Map<PhysicalObject, int[]> map = new HashMap<>();
+            map.put(physicalObject, new int[]{x, y});
+            objectMap.put(physicalObject.hashCode(), map);
         }
     }
 
     @Override
     public void movePhysicalObject(PhysicalObject physicalObject, int x, int y) throws OccupiedByAnotherObjectException, ObjectNotYetPlacedException, CoordinateOutOfBoundsException {
-        if (!objectMap.containsKey(physicalObject)) {
+        if (!objectMap.containsKey(physicalObject.hashCode())) {
             throw new ObjectNotYetPlacedException("object must be placed before it can be placed");
         }
 
         if (canPlaceObject(x, y)) {
-            int[] coordinates = objectMap.get(physicalObject);
+            int[] coordinates = getEdges(physicalObject);
             vertices[coordinates[0]][coordinates[1]] = false;
-            vertices[x][y] = true;
-            objectMap.put(physicalObject, new int[] {x, y});
+            placePhysicalObject(physicalObject, x, y);
         }
     }
 
     @Override
     public void removePhysicalObject(PhysicalObject physicalObject) throws ObjectNotYetPlacedException {
-        if (!objectMap.containsKey(physicalObject)) {
+        if (!objectMap.containsKey(physicalObject.hashCode())) {
             throw new ObjectNotYetPlacedException("a object must be part of the world before it can be deleted");
         }
-        int[] coordinates = objectMap.get(physicalObject);
+        int[] coordinates = getEdges(physicalObject);
         vertices[coordinates[0]][coordinates[1]] = false;
-        objectMap.remove(physicalObject);
+        objectMap.remove(physicalObject.hashCode());
 
     }
 
@@ -67,10 +68,12 @@ public class WorldImpl implements World {
         Iterator it = objectMap.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
-            int[] coordinates = (int[]) pair.getValue();
+
+            Map map = (Map) pair.getValue();
+            int[] coordinates = (int[]) (map.values().toArray())[0];
 
             if (coordinates[0] == x && coordinates[1] == y) {
-                return (PhysicalObject) pair.getKey();
+                return (PhysicalObject) (map.keySet().toArray())[0];
             }
         }
 
@@ -84,6 +87,6 @@ public class WorldImpl implements World {
 
     @Override
     public int[] getEdges(PhysicalObject physicalObject) {
-        return objectMap.get(physicalObject);
+        return objectMap.get(physicalObject.hashCode()).get(physicalObject);
     }
 }

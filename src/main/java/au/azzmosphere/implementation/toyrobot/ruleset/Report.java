@@ -6,7 +6,7 @@ import au.azzmosphere.worlds.InvalidMovementException;
 import au.azzmosphere.worlds.ObjectNotYetPlacedException;
 import au.azzmosphere.worlds.OccupiedByAnotherObjectException;
 
-public class Report extends AbstractRule {
+public final class Report extends AbstractRule {
     @Override
     protected boolean performAction(Request request) throws CoordinateOutOfBoundsException, InvalidMovementException, OccupiedByAnotherObjectException, ObjectNotYetPlacedException {
         boolean result = true;
