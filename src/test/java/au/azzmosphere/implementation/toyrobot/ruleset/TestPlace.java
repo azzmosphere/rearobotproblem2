@@ -14,6 +14,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class TestPlace {
     private WorldRuleSet place = new Place();
@@ -22,6 +23,7 @@ public class TestPlace {
     @Before
     public void setup() {
         place.setWorld(world);
+        when(world.getVertices()).thenReturn(new boolean[][]{});
     }
 
     @Test
