@@ -16,6 +16,16 @@ import au.azzmosphere.worlds.InvalidMovementException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * communicates the request to the business rules, using the following workflow:
+ *
+ * 1. creates a empty response;
+ * 2. sets the response with the current physical object;
+ * 3. request the business rule class from the business rule factory using the request type;
+ * 4. runs the business rule;
+ * 5. sets the current physical object to the ones that was returned by the business rules class.
+ */
+
 public final class ActionServiceImpl implements ActionService {
     private WorldRuleSetFactory worldRuleSetFactory;
     private static final Logger logger = Logger.getLogger(ActionService.class);
@@ -70,6 +80,11 @@ public final class ActionServiceImpl implements ActionService {
         }
     }
 
+    /**
+     * Decides which business rule to apply to a request.
+     *
+     * @param worldRulesetFactory
+     */
     @Autowired
     @Override
     public void setWorldRulesetFactory(WorldRuleSetFactory worldRulesetFactory) {
