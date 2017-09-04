@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="world" class="au.azzmosphere.worlds.WorldImpl" lazy-init="true" >
+        <constructor-arg index="0" value="5"/>
+        <constructor-arg index="1" value="5"/>
+    </bean>
+
+    <bean id="rulesetfactory" class="au.azzmosphere.implementation.toyrobot.ruleset.RobotRuleSetFactory" />
+
+    <bean id="actionService" class="au.azzmosphere.implementation.toyrobot.services.ActionServiceImpl" />
+
+</beans>
