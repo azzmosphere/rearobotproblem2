@@ -26,10 +26,6 @@ bootRepackage {
     executable = true
 }
 
-jar {
-    baseName = 'robotchallenge2'
-}
-
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-websocket")
     compile("org.webjars:webjars-locator")

@@ -3,7 +3,7 @@ branch-defaults:
     environment: RobotChallenge2-dev
     group_suffix: null
 deploy:
-  artifact: build/libs/robotchallenge2-1.0-SNAPSHOT.jar
+  artifact: build/libs/RobotChallenge2-1.0-SNAPSHOT.jar
 global:
   application_name: RobotChallenge2
   branch: null
