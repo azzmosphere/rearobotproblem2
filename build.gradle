@@ -1,19 +1,24 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.6.RELEASE")
+        classpath "jp.classmethod.aws:gradle-aws-plugin:0.+"
     }
 }
 
 group 'au.azzmosphere.robotchallenge2'
 version '1.0-SNAPSHOT'
+ext.artifactId = '05-beanstalk'
+ext.timestamp = new Date().format("yyyyMMdd'_'HHmmss", TimeZone.default)
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'checkstyle'
+apply plugin: "jp.classmethod.aws.beanstalk"
 
 sourceCompatibility = 1.8
 
@@ -23,8 +28,12 @@ repositories {
 
 bootRepackage {
     mainClass = 'au.azzmosphere.ToyRobot'
-    executable = true
+
+    // executable set to true stuffs up AWS for some reason.
+    //executable = true
 }
+
+
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-websocket")
@@ -45,3 +54,45 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.6.RELEASE'
 }
+
+// ==== AWS settings
+
+//aws {
+//	profileName = "profile eb-cli"
+//	region = "ap-southeast-2"
+//}
+//
+//beanstalk {
+//	appName "RobotChallenge2"
+//	appDesc "gradle-aws-plugin demo application"
+//
+//	version {
+//		label = "05-beanstalk-${timestamp}"
+//		description = "${artifactId} v${version}"
+//		bucket = "elasticbeanstalk-${aws.region}-${aws.accountId}"
+//		key = "eb-apps/${artifactId}/${artifactId}-${timestamp}.zip"
+//    }
+//
+//    configurationTemplates {
+////    production {
+////        optionSettings = file("src/main/config/production.json")
+////        solutionStackName = "64bit Amazon Linux 2015.03 v1.4.0 running Docker 1.6.0"
+////    }
+//    development {
+//        optionSettings = file("config/aws/development.json")
+//        solutionStackName = "64bit Amazon Linux 2015.03 v1.4.0 running Docker 1.6.0"
+//    }
+//}
+//
+//    environment {
+//        envName = "RobotChallenge2-dev"
+//        envDesc = "Robot Challenge"
+//        templateName = "development"
+//        versionLabel = "05-beanstalk-${timestamp}"
+//        tags = [
+//            VERSION: "${timestamp}".toString(),
+//            GROUP: "Eng"
+//        ]
+//    }
+//}
+
