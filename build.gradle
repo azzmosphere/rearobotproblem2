@@ -34,6 +34,12 @@ bootRepackage {
 }
 
 
+jar {
+    baseName = 'gs-spring-boot-docker'
+    version =  '0.1.0'
+}
+
+
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-websocket")
