@@ -12,3 +12,8 @@ out/
 #.elasticbeanstalk/*
 #!.elasticbeanstalk/*.cfg.yml
 #!.elasticbeanstalk/*.global.yml
+gradle/
+gradlew
+gradlew.bat
+src/main/main.iml
+src/test/test.iml
